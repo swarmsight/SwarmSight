@@ -1,5 +1,15 @@
 ﻿# SwarmSight
 
+ ﻿                                                 
+   _____                           _____ _       _     _   
+  / ____|                         / ____(_)     | |   | |  
+ | (_____      ____ _ _ __ _ __ | (___  _  __ _| |__ | |_ 
+  \___ \ \ /\ / / _ | '__| '_ \ \___ \| |/ _ | '_ \| __|
+  ____) \ V  V / (_| | |  | | | |____) | | (_| | | | | |_ 
+ |_____/ \_/\_/ \__,_|_|  |_| |_|_____/|_|\__, |_| |_|\__|
+                                           __/ |          
+                                          |___/           
+
 <div align="center">
   <img src="branding/swarmsight_logo.svg" width="500" height="150" alt="SwarmSight Logo">
   <p>Advanced security analysis for blockchain ecosystems.</p>
