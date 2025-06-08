@@ -5,19 +5,19 @@
  */
 
 function format(results) {
-    return JSON.stringify(results, null, 2);
+  return JSON.stringify(results, null, 2);
 }
 
 function getFileExtension() {
-    return '.json';
+  return ".json";
 }
 
 function getMimeType() {
-    return 'application/json';
+  return "application/json";
 }
 
 module.exports = {
-    format,
-    getFileExtension,
-    getMimeType
+  format,
+  getFileExtension,
+  getMimeType,
 };

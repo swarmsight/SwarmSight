@@ -16,16 +16,16 @@ const fs = require("fs");
 function getAvailableCheckers(options = {}) {
   const allCheckers = [
     {
-      name: 'Cppcheck',
-      description: 'Static analysis tool for C/C++ code',
-      severity: 'high',
-      category: 'static-analysis',
-      language: 'cpp',
-      available: fs.existsSync(path.join(__dirname, '../cpp-checker/cppcheck'))
-    }
+      name: "Cppcheck",
+      description: "Static analysis tool for C/C++ code",
+      severity: "high",
+      category: "static-analysis",
+      language: "cpp",
+      available: fs.existsSync(path.join(__dirname, "../cpp-checker/cppcheck")),
+    },
   ];
 
-  return allCheckers.filter(checker => checker.available);
+  return allCheckers.filter((checker) => checker.available);
 }
 
 /**
@@ -33,31 +33,31 @@ function getAvailableCheckers(options = {}) {
  */
 async function scan(targetPath, options = {}) {
   const results = {
-    language: 'cpp',
+    language: "cpp",
     checkers: [],
     findings: [],
     metadata: {
       scannedPath: targetPath,
       timestamp: new Date().toISOString(),
-      version: '1.0.0'
-    }
+      version: "1.0.0",
+    },
   };
 
   try {
     const checkers = getAvailableCheckers(options);
-    
+
     for (const checker of checkers) {
       results.checkers.push(checker.name);
-      
+
       // Placeholder for actual checker execution
       results.findings.push({
         checker: checker.name,
-        severity: 'info',
+        severity: "info",
         message: `${checker.name} analysis placeholder - implementation pending`,
         file: targetPath,
         line: 1,
         column: 1,
-        rule: `${checker.name.toLowerCase()}-placeholder`
+        rule: `${checker.name.toLowerCase()}-placeholder`,
       });
     }
   } catch (error) {
@@ -69,5 +69,5 @@ async function scan(targetPath, options = {}) {
 
 module.exports = {
   getAvailableCheckers,
-  scan
+  scan,
 };

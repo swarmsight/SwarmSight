@@ -16,40 +16,48 @@ const fs = require("fs");
 function getAvailableCheckers(options = {}) {
   const allCheckers = [
     {
-      name: 'Slither',
-      description: 'Static analyzer for Solidity smart contracts',
-      severity: 'high',
-      category: 'static-analysis',
-      language: 'solidity',
-      available: fs.existsSync(path.join(__dirname, '../solidity-checker/slither'))
+      name: "Slither",
+      description: "Static analyzer for Solidity smart contracts",
+      severity: "high",
+      category: "static-analysis",
+      language: "solidity",
+      available: fs.existsSync(
+        path.join(__dirname, "../solidity-checker/slither")
+      ),
     },
     {
-      name: 'Aderyn',
-      description: 'Rust-based static analyzer for Solidity',
-      severity: 'high',
-      category: 'static-analysis',
-      language: 'solidity',
-      available: fs.existsSync(path.join(__dirname, '../solidity-checker/aderyn'))
+      name: "Aderyn",
+      description: "Rust-based static analyzer for Solidity",
+      severity: "high",
+      category: "static-analysis",
+      language: "solidity",
+      available: fs.existsSync(
+        path.join(__dirname, "../solidity-checker/aderyn")
+      ),
     },
     {
-      name: 'Gas Fee Saver',
-      description: 'Gas optimization analyzer for Solidity contracts',
-      severity: 'medium',
-      category: 'optimization',
-      language: 'solidity',
-      available: fs.existsSync(path.join(__dirname, '../solidity-checker/gas-fee-saver'))
+      name: "Gas Fee Saver",
+      description: "Gas optimization analyzer for Solidity contracts",
+      severity: "medium",
+      category: "optimization",
+      language: "solidity",
+      available: fs.existsSync(
+        path.join(__dirname, "../solidity-checker/gas-fee-saver")
+      ),
     },
     {
-      name: 'Compliance Checker',
-      description: 'Compliance and regulatory checker for smart contracts',
-      severity: 'medium',
-      category: 'compliance',
-      language: 'solidity',
-      available: fs.existsSync(path.join(__dirname, '../solidity-checker/compliance-checker'))
-    }
+      name: "Compliance Checker",
+      description: "Compliance and regulatory checker for smart contracts",
+      severity: "medium",
+      category: "compliance",
+      language: "solidity",
+      available: fs.existsSync(
+        path.join(__dirname, "../solidity-checker/compliance-checker")
+      ),
+    },
   ];
 
-  return allCheckers.filter(checker => checker.available);
+  return allCheckers.filter((checker) => checker.available);
 }
 
 /**
@@ -57,31 +65,31 @@ function getAvailableCheckers(options = {}) {
  */
 async function scan(targetPath, options = {}) {
   const results = {
-    language: 'solidity',
+    language: "solidity",
     checkers: [],
     findings: [],
     metadata: {
       scannedPath: targetPath,
       timestamp: new Date().toISOString(),
-      version: '1.0.0'
-    }
+      version: "1.0.0",
+    },
   };
 
   try {
     const checkers = getAvailableCheckers(options);
-    
+
     for (const checker of checkers) {
       results.checkers.push(checker.name);
-      
+
       // Placeholder for actual checker execution
       results.findings.push({
         checker: checker.name,
-        severity: 'info',
+        severity: "info",
         message: `${checker.name} analysis placeholder - implementation pending`,
         file: targetPath,
         line: 1,
         column: 1,
-        rule: `${checker.name.toLowerCase()}-placeholder`
+        rule: `${checker.name.toLowerCase()}-placeholder`,
       });
     }
   } catch (error) {
@@ -93,5 +101,5 @@ async function scan(targetPath, options = {}) {
 
 module.exports = {
   getAvailableCheckers,
-  scan
+  scan,
 };

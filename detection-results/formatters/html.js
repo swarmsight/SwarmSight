@@ -5,9 +5,9 @@
  */
 
 function format(results) {
-    const timestamp = new Date(results.metadata.timestamp).toLocaleString();
-    
-    let html = `
+  const timestamp = new Date(results.metadata.timestamp).toLocaleString();
+
+  let html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,46 +47,50 @@ function format(results) {
     
     <div class="findings">
         <h2>Findings</h2>`;
-    
-    if (results.findings.length === 0) {
-        html += '<p>No security findings detected.</p>';
-    } else {
-        results.findings.forEach(finding => {
-            html += `
+
+  if (results.findings.length === 0) {
+    html += "<p>No security findings detected.</p>";
+  } else {
+    results.findings.forEach((finding) => {
+      html += `
         <div class="finding ${finding.severity}">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h3>${finding.message}</h3>
-                <span class="severity ${finding.severity}">${finding.severity.toUpperCase()}</span>
+                <span class="severity ${
+                  finding.severity
+                }">${finding.severity.toUpperCase()}</span>
             </div>
             <p><strong>File:</strong> ${finding.file}</p>
-            <p><strong>Line:</strong> ${finding.line} | <strong>Column:</strong> ${finding.column}</p>
+            <p><strong>Line:</strong> ${
+              finding.line
+            } | <strong>Column:</strong> ${finding.column}</p>
             <p><strong>Rule:</strong> ${finding.rule}</p>
             <p><strong>Checker:</strong> ${finding.checker}</p>
             <div class="metadata">
-                ${finding.description || ''}
+                ${finding.description || ""}
             </div>
         </div>`;
-        });
-    }
-    
-    html += `
+    });
+  }
+
+  html += `
     </div>
 </body>
 </html>`;
-    
-    return html;
+
+  return html;
 }
 
 function getFileExtension() {
-    return '.html';
+  return ".html";
 }
 
 function getMimeType() {
-    return 'text/html';
+  return "text/html";
 }
 
 module.exports = {
-    format,
-    getFileExtension,
-    getMimeType
+  format,
+  getFileExtension,
+  getMimeType,
 };

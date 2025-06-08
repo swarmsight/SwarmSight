@@ -55,7 +55,8 @@ class SwarmSightScanner {
   /**
    * Load all available checkers based on configuration
    */
-  loadCheckers() {    // Load Rust checkers
+  loadCheckers() {
+    // Load Rust checkers
     if (
       this.options.checkers === "all" ||
       this.options.checkers.includes("rust")
@@ -72,7 +73,7 @@ class SwarmSightScanner {
       } catch (error) {
         console.error(chalk.red("Error loading Rust checkers:"), error.message);
       }
-    }    // Load Solidity checkers
+    } // Load Solidity checkers
     if (
       this.options.checkers === "all" ||
       this.options.checkers.includes("solidity")
