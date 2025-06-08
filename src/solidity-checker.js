@@ -11,53 +11,96 @@ const path = require("path");
 const fs = require("fs");
 
 /**
+ * Base Solidity checker implementation
+ */
+class SolidityChecker {
+  constructor(config) {
+    this.id = config.id;
+    this.name = config.name;
+    this.description = config.description;
+    this.severity = config.severity;
+    this.category = config.category;
+    this.language = "solidity";
+    this.available = config.available;
+  }
+
+  async scan(projectPath, options = {}) {
+    console.log(`Running ${this.name} checker...`);
+
+    // Create mock findings for demonstration
+    const findings = [
+      {
+        id: `${this.id.toUpperCase()}-001`,
+        title: `${this.name} security analysis`,
+        severity: this.severity,
+        category: this.category,
+        tool: this.id,
+        description: `${this.name} analysis completed - placeholder implementation`,
+        file: projectPath,
+        line: 1,
+        column: 1,
+        rule: `${this.id}-analysis`,
+        recommendation: `Consider implementing actual ${this.name} integration for production use.`,
+      },
+    ];
+
+    return { findings };
+  }
+}
+
+/**
  * Get all available Solidity checkers based on options
  */
 function getAvailableCheckers(options = {}) {
-  const allCheckers = [
+  const checkerConfigs = [
     {
+      id: "slither",
       name: "Slither",
       description: "Static analyzer for Solidity smart contracts",
       severity: "high",
       category: "static-analysis",
-      language: "solidity",
       available: fs.existsSync(
         path.join(__dirname, "../solidity-checker/slither")
       ),
     },
     {
+      id: "aderyn",
       name: "Aderyn",
       description: "Rust-based static analyzer for Solidity",
       severity: "high",
       category: "static-analysis",
-      language: "solidity",
       available: fs.existsSync(
         path.join(__dirname, "../solidity-checker/aderyn")
       ),
     },
     {
+      id: "gas-fee-saver",
       name: "Gas Fee Saver",
       description: "Gas optimization analyzer for Solidity contracts",
       severity: "medium",
       category: "optimization",
-      language: "solidity",
       available: fs.existsSync(
         path.join(__dirname, "../solidity-checker/gas-fee-saver")
       ),
     },
     {
+      id: "compliance-checker",
       name: "Compliance Checker",
       description: "Compliance and regulatory checker for smart contracts",
       severity: "medium",
       category: "compliance",
-      language: "solidity",
       available: fs.existsSync(
         path.join(__dirname, "../solidity-checker/compliance-checker")
       ),
     },
   ];
 
-  return allCheckers.filter((checker) => checker.available);
+  // Create checker instances for available checkers
+  const availableCheckers = checkerConfigs
+    .filter((config) => config.available)
+    .map((config) => new SolidityChecker(config));
+
+  return availableCheckers;
 }
 
 /**

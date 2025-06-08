@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "tool": "SwarmSight",
+    "version": "1.0.0",
+    "timestamp": "2025-06-08T08:48:05.343Z",
+    "options": {
+      "projectPath": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "outputFormat": "json",
+      "outputFile": "test-solidity-fix.json",
+      "severity": "low",
+      "checkers": "all",
+      "exclude": [
+        "node_modules",
+        "target",
+        "build",
+        "dist"
+      ],
+      "verbose": false,
+      "ci": false,
+      "failOn": "critical"
+    }
+  },
+  "summary": {
+    "total": 12,
+    "critical": 0,
+    "high": 2,
+    "medium": 2,
+    "low": 0,
+    "info": 8
+  },
+  "findings": [
+    {
+      "id": "SLITHER-001",
+      "title": "Slither security analysis",
+      "severity": "high",
+      "category": "static-analysis",
+      "tool": "slither",
+      "description": "Slither analysis completed - placeholder implementation",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "slither-analysis",
+      "recommendation": "Consider implementing actual Slither integration for production use."
+    },
+    {
+      "id": "ADERYN-001",
+      "title": "Aderyn security analysis",
+      "severity": "high",
+      "category": "static-analysis",
+      "tool": "aderyn",
+      "description": "Aderyn analysis completed - placeholder implementation",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "aderyn-analysis",
+      "recommendation": "Consider implementing actual Aderyn integration for production use."
+    },
+    {
+      "id": "GAS-FEE-SAVER-001",
+      "title": "Gas Fee Saver security analysis",
+      "severity": "medium",
+      "category": "optimization",
+      "tool": "gas-fee-saver",
+      "description": "Gas Fee Saver analysis completed - placeholder implementation",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "gas-fee-saver-analysis",
+      "recommendation": "Consider implementing actual Gas Fee Saver integration for production use."
+    },
+    {
+      "id": "COMPLIANCE-CHECKER-001",
+      "title": "Compliance Checker security analysis",
+      "severity": "medium",
+      "category": "compliance",
+      "tool": "compliance-checker",
+      "description": "Compliance Checker analysis completed - placeholder implementation",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "compliance-checker-analysis",
+      "recommendation": "Consider implementing actual Compliance Checker integration for production use."
+    },
+    {
+      "severity": "info",
+      "message": "Rudra static analysis placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "rudra-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "RAPx privacy leak analysis placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "rapx-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "AtomV atomicity violation analysis placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "atomv-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "Cocoon information flow control analysis placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "cocoon-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "MIRAI abstract interpretation analysis placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "mirai-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "ERASan data race detection placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "erasan-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "Shuttle concurrency testing placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "shuttle-placeholder"
+    },
+    {
+      "severity": "info",
+      "message": "Kani formal verification placeholder - implementation pending",
+      "file": "C:\\Users\\Admin\\Desktop\\memora\\Chain-Fox-main\\test-project",
+      "line": 1,
+      "column": 1,
+      "rule": "kani-placeholder"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+Severity,Message,File,Line,Column,Rule,Checker,Description
+info,"Rudra static analysis placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"rudra-placeholder","",""
+info,"RAPx privacy leak analysis placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"rapx-placeholder","",""
+info,"AtomV atomicity violation analysis placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"atomv-placeholder","",""
+info,"Cocoon information flow control analysis placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"cocoon-placeholder","",""
+info,"MIRAI abstract interpretation analysis placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"mirai-placeholder","",""
+info,"ERASan data race detection placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"erasan-placeholder","",""
+info,"Shuttle concurrency testing placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"shuttle-placeholder","",""
+info,"Kani formal verification placeholder - implementation pending","C:\Users\Admin\Desktop\memora\Chain-Fox-main\test-project",1,1,"kani-placeholder","",""
