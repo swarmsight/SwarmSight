@@ -97,7 +97,62 @@ class SwarmSightScanner {
       }
     }
 
-    // Load other language checkers similarly...
+    // Load Go checkers
+    if (
+      this.options.checkers === "all" ||
+      this.options.checkers.includes("go")
+    ) {
+      try {
+        const goCheckerPath = path.join(__dirname, "go-checker.js");
+        if (fs.existsSync(goCheckerPath)) {
+          const checkers = require("./go-checker");
+          this.checkers.go = checkers.getAvailableCheckers(this.options);
+          console.log(
+            chalk.blue(`Loaded ${this.checkers.go.length} Go checkers`)
+          );
+        }
+      } catch (error) {
+        console.error(chalk.red("Error loading Go checkers:"), error.message);
+      }
+    }
+
+    // Load C++ checkers
+    if (
+      this.options.checkers === "all" ||
+      this.options.checkers.includes("cpp")
+    ) {
+      try {
+        const cppCheckerPath = path.join(__dirname, "cpp-checker.js");
+        if (fs.existsSync(cppCheckerPath)) {
+          const checkers = require("./cpp-checker");
+          this.checkers.cpp = checkers.getAvailableCheckers(this.options);
+          console.log(
+            chalk.blue(`Loaded ${this.checkers.cpp.length} C++ checkers`)
+          );
+        }
+      } catch (error) {
+        console.error(chalk.red("Error loading C++ checkers:"), error.message);
+      }
+    }
+
+    // Load Move checkers
+    if (
+      this.options.checkers === "all" ||
+      this.options.checkers.includes("move")
+    ) {
+      try {
+        const moveCheckerPath = path.join(__dirname, "move-checker.js");
+        if (fs.existsSync(moveCheckerPath)) {
+          const checkers = require("./move-checker");
+          this.checkers.move = checkers.getAvailableCheckers(this.options);
+          console.log(
+            chalk.blue(`Loaded ${this.checkers.move.length} Move checkers`)
+          );
+        }
+      } catch (error) {
+        console.error(chalk.red("Error loading Move checkers:"), error.message);
+      }
+    }
   }
 
   /**
@@ -120,11 +175,27 @@ class SwarmSightScanner {
         promises.push(this.runLanguageCheckers(language));
       }
     }
-
     await Promise.all(promises);
 
     // Update summary stats
     this.updateSummary();
+
+    // Calculate security score
+    const securityScore = this.calculateSecurityScore();
+    this.results.securityScore = securityScore;
+
+    // Display security score    console.log(chalk.cyan('\n=== Security Score ==='));
+    console.log(
+      chalk.bold(`Score: ${securityScore.score}/100 (${securityScore.rating})`)
+    );
+    console.log(chalk.gray(`Details: ${securityScore.details}`));
+    if (securityScore.breakdown) {
+      console.log(
+        chalk.gray(
+          `Issues: Critical(${securityScore.breakdown.critical}) High(${securityScore.breakdown.high}) Medium(${securityScore.breakdown.medium}) Low(${securityScore.breakdown.low}) Info(${securityScore.breakdown.info})`
+        )
+      );
+    }
 
     // Generate and save report
     await this.generateReport();
@@ -238,6 +309,76 @@ class SwarmSightScanner {
           (this.results.summary[finding.severity.toLowerCase()] || 0) + 1;
       }
     }
+  }
+
+  /**
+   * Calculate security score based on findings
+   */
+  calculateSecurityScore() {
+    const {
+      critical = 0,
+      high = 0,
+      medium = 0,
+      low = 0,
+      info = 0,
+    } = this.results.summary;
+    const total = critical + high + medium + low + info;
+
+    if (total === 0) {
+      return {
+        score: 100,
+        rating: "Excellent",
+        details: "No security issues found",
+      };
+    }
+
+    // Weighted scoring system
+    const criticalWeight = 20;
+    const highWeight = 10;
+    const mediumWeight = 5;
+    const lowWeight = 1;
+    const infoWeight = 0.5;
+
+    const totalDeductions =
+      critical * criticalWeight +
+      high * highWeight +
+      medium * mediumWeight +
+      low * lowWeight +
+      info * infoWeight;
+
+    // Base score starts at 100, deduct based on severity
+    const rawScore = Math.max(0, 100 - totalDeductions);
+
+    // Apply scaling factor for better distribution
+    const scaledScore = Math.max(0, Math.min(100, rawScore * 1.2));
+    const score = Math.round(scaledScore);
+
+    let rating;
+    let details;
+
+    if (score >= 90) {
+      rating = "Excellent";
+      details = "Very few security issues detected";
+    } else if (score >= 75) {
+      rating = "Good";
+      details = "Some security issues found, but manageable";
+    } else if (score >= 50) {
+      rating = "Fair";
+      details = "Moderate security issues that should be addressed";
+    } else if (score >= 25) {
+      rating = "Poor";
+      details = "Significant security issues requiring immediate attention";
+    } else {
+      rating = "Critical";
+      details = "Severe security issues found - immediate action required";
+    }
+
+    return {
+      score,
+      rating,
+      details,
+      breakdown: { critical, high, medium, low, info },
+    };
   }
 
   /**

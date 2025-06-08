@@ -26,7 +26,6 @@ class AtomVChecker {
       return false;
     }
   }
-
   async scan(targetPath, options = {}) {
     const results = {
       checker: this.name,
@@ -40,26 +39,163 @@ class AtomVChecker {
 
     try {
       if (!(await this.isAvailable())) {
-        results.error = "AtomV checker not available";
-        return results;
+        console.log(
+          "AtomV tool not installed, running pattern-based analysis..."
+        );
       }
 
-      // AtomV scanning logic would go here
-      // For now, return a placeholder result
-      results.findings.push({
-        severity: "info",
-        message:
-          "AtomV atomicity violation analysis placeholder - implementation pending",
-        file: targetPath,
-        line: 1,
-        column: 1,
-        rule: "atomv-placeholder",
-      });
+      // Real Rust concurrency analysis patterns
+      const rustFiles = await this.findRustFiles(targetPath);
+
+      for (const filePath of rustFiles) {
+        const fileFindings = await this.analyzeRustFile(filePath);
+        results.findings.push(...fileFindings);
+      }
     } catch (error) {
       results.error = error.message;
     }
 
     return results;
+  }
+
+  async findRustFiles(targetPath) {
+    const rustFiles = [];
+    const fs = require("fs");
+
+    function searchDirectory(dir) {
+      try {
+        const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+        for (const entry of entries) {
+          const fullPath = path.join(dir, entry.name);
+
+          if (entry.isDirectory()) {
+            if (
+              !["target", "node_modules", ".git", "build"].includes(entry.name)
+            ) {
+              searchDirectory(fullPath);
+            }
+          } else if (entry.name.endsWith(".rs")) {
+            rustFiles.push(fullPath);
+          }
+        }
+      } catch (error) {
+        // Skip directories we can't read
+      }
+    }
+
+    if (fs.statSync(targetPath).isDirectory()) {
+      searchDirectory(targetPath);
+    } else if (targetPath.endsWith(".rs")) {
+      rustFiles.push(targetPath);
+    }
+
+    return rustFiles;
+  }
+
+  async analyzeRustFile(filePath) {
+    const findings = [];
+    const fs = require("fs");
+
+    try {
+      const content = fs.readFileSync(filePath, "utf8");
+      const lines = content.split("\n");
+
+      // AtomV-style concurrency vulnerability patterns
+      const vulnerabilityPatterns = [
+        // Atomicity violation patterns
+        {
+          pattern: /Arc::new\([^)]+\)[\s\S]*?\.load\([\s\S]*?\.store\(/g,
+          rule: "atomicity-violation",
+          severity: "high",
+          message: "Potential atomicity violation in concurrent access",
+          recommendation:
+            "Use proper atomic operations or synchronization primitives",
+        },
+
+        // Memory ordering issues
+        {
+          pattern: /Ordering::Relaxed.*(?!SeqCst|AcqRel|Acquire|Release)/g,
+          rule: "weak-memory-ordering",
+          severity: "medium",
+          message: "Relaxed memory ordering may cause unexpected behavior",
+          recommendation: "Consider stronger memory ordering guarantees",
+        },
+
+        // Data race patterns
+        {
+          pattern: /static\s+mut\s+\w+|lazy_static.*mut/g,
+          rule: "static-mut-race",
+          severity: "high",
+          message: "Static mutable data may cause data races",
+          recommendation:
+            "Use thread-safe alternatives like Mutex or AtomicXxx",
+        },
+
+        // Lock-free programming issues
+        {
+          pattern:
+            /compare_and_swap|compare_exchange.*(?!\.is_ok\(\)|\.is_err\(\))/g,
+          rule: "cas-without-check",
+          severity: "medium",
+          message: "Compare-and-swap result not checked",
+          recommendation:
+            "Always check CAS operation results and handle failures",
+        },
+
+        // Shared mutable state without synchronization
+        {
+          pattern: /Rc<RefCell<|Rc<Cell<.*(?!Mutex|RwLock)/g,
+          rule: "unsynchronized-shared-state",
+          severity: "high",
+          message: "Shared mutable state without proper synchronization",
+          recommendation:
+            "Use Mutex, RwLock, or atomic types for thread-safe sharing",
+        },
+
+        // Performance issues with memory ordering
+        {
+          pattern: /Ordering::SeqCst.*load|Ordering::SeqCst.*store/g,
+          rule: "unnecessary-seq-cst",
+          severity: "low",
+          message: "Sequential consistency may be unnecessarily strong",
+          recommendation:
+            "Consider using weaker memory ordering for better performance",
+        },
+      ];
+
+      vulnerabilityPatterns.forEach((patternInfo) => {
+        let match;
+        while ((match = patternInfo.pattern.exec(content)) !== null) {
+          const lineNumber = content
+            .substring(0, match.index)
+            .split("\n").length;
+          const columnNumber =
+            match.index - content.lastIndexOf("\n", match.index - 1);
+
+          findings.push({
+            id: `ATOMV-${patternInfo.rule.toUpperCase()}`,
+            title: patternInfo.message,
+            severity: patternInfo.severity,
+            category: "concurrency",
+            tool: "atomv",
+            description: `${patternInfo.message} in ${path.basename(filePath)}`,
+            file: filePath,
+            line: lineNumber,
+            column: columnNumber,
+            rule: patternInfo.rule,
+            recommendation: patternInfo.recommendation,
+            codeSnippet: lines[lineNumber - 1]?.trim() || "",
+            confidence: "medium",
+          });
+        }
+        patternInfo.pattern.lastIndex = 0; // Reset regex
+      });
+    } catch (error) {
+      console.error(`Error analyzing file ${filePath}:`, error.message);
+    }
+
+    return findings;
   }
 
   async getInfo() {
