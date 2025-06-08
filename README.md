@@ -1,5 +1,3 @@
-﻿# SwarmSight
-
 <div align="center">
 
 ```text
