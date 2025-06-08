@@ -1,7 +1,18 @@
 ﻿# SwarmSight
-        
+
 <div align="center">
-  <img src="branding/swarmsight_logo.svg" width="500" height="150" alt="SwarmSight Logo">
+
+```text
+ _____                           _____ _       _     _   
+/ ____|                         / ____(_)     | |   | |  
+| (_____ \ /\ / / _ | '__| '_ \ \___ \| |/ _ | '_ \| __|
+ \___ \ \ /\ / / _ | '__| '_ \ \___ \| |/ _ | '_ \| __|
+ ____) \ V  V / (_| | |  | | | |____) | | (_| | | | | |_ 
+|_____/ \_/\_/ \__,_|_|  |_| |_|_____/|_|\__, |_| |_|\__|
+                                          __/ |          
+                                         |___/
+```
+
   <p>Advanced security analysis for blockchain ecosystems.</p>
 
   [![Website](https://img.shields.io/badge/Website-SwarmSight-blue)](https://swarmsight.io)
