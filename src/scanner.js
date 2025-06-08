@@ -55,16 +55,15 @@ class SwarmSightScanner {
   /**
    * Load all available checkers based on configuration
    */
-  loadCheckers() {
-    // Load Rust checkers
+  loadCheckers() {    // Load Rust checkers
     if (
       this.options.checkers === "all" ||
       this.options.checkers.includes("rust")
     ) {
       try {
-        const rustCheckerPath = path.join(__dirname, "../rust-checker");
+        const rustCheckerPath = path.join(__dirname, "rust-checker");
         if (fs.existsSync(rustCheckerPath)) {
-          const checkers = require(rustCheckerPath);
+          const checkers = require("./rust-checker");
           this.checkers.rust = checkers.getAvailableCheckers(this.options);
           console.log(
             chalk.blue(`Loaded ${this.checkers.rust.length} Rust checkers`)
@@ -73,17 +72,15 @@ class SwarmSightScanner {
       } catch (error) {
         console.error(chalk.red("Error loading Rust checkers:"), error.message);
       }
-    }
-
-    // Load Solidity checkers
+    }    // Load Solidity checkers
     if (
       this.options.checkers === "all" ||
       this.options.checkers.includes("solidity")
     ) {
       try {
-        const solidityCheckerPath = path.join(__dirname, "../solidity-checker");
+        const solidityCheckerPath = path.join(__dirname, "solidity-checker.js");
         if (fs.existsSync(solidityCheckerPath)) {
-          const checkers = require(solidityCheckerPath);
+          const checkers = require("./solidity-checker");
           this.checkers.solidity = checkers.getAvailableCheckers(this.options);
           console.log(
             chalk.blue(
