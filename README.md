@@ -82,7 +82,7 @@ npm run scan [project-path]
 
 ## 📖 Documentation
 
-For comprehensive documentation, visit our [Documentation Portal](https://docs.swarmsight.xyz).
+For comprehensive documentation, visit our [Documentation Portal](https://swarms-organization.gitbook.io/swarmsight).
 
 ## 🗺️ Roadmap
 
@@ -97,9 +97,12 @@ Our vision for SwarmSight extends well into the future:
 
 Join our growing community:
 
-- [Github](https://github.com/swarmsight/SwarmSight) - For real-time discussions
-- [X](https://x.com/swarmsight) - For announcements and updates
-- [Web](https://swarmsight.xyz) - For in-depth discussions
+## Stay Connected
+
+- [GitHub](https://github.com/swarmsight/SwarmSight) – Join the community for real-time discussions, development updates, and to contribute to the project.
+- [X (Twitter)](https://x.com/swarmsight) – Follow us for the latest news, feature announcements, and quick updates.
+- [Website](https://swarmsight.xyz) – Dive deeper into SwarmSight with detailed documentation, technical blogs, and community insights.
+
 
 ## 📄 License
 
