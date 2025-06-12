@@ -9,7 +9,10 @@
  ╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
 
     🔍 Advanced Security Analysis for Blockchain Ecosystems 🛡️
-```  <p><strong>Comprehensive vulnerability detection across multiple blockchain languages</strong></p>
+```
+
+  <p><strong>Comprehensive vulnerability detection across multiple blockchain languages</strong></p>
+
   [![Website](https://img.shields.io/badge/Website-SwarmSight-blue)](https://swarmsight.xyz)
   [![X](https://img.shields.io/badge/X-Follow-black)](https://x.com/swarmsight)
   [![GitHub Stars](https://img.shields.io/github/stars/swarmsight/SwarmSight?style=social)](https://github.com/swarmsight/SwarmSight)
