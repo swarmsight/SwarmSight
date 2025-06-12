@@ -12,7 +12,6 @@
 ```
 
   <p><strong>Comprehensive vulnerability detection across multiple blockchain languages</strong></p>
-
   [![Website](https://img.shields.io/badge/Website-SwarmSight-blue)](https://swarmsight.io)
   [![Discord](https://img.shields.io/badge/Discord-Join-7289DA)](https://discord.gg/swarmsight)
   [![Telegram](https://img.shields.io/badge/Telegram-Join-26A5E4)](https://t.me/swarmsight_io)
@@ -99,9 +98,9 @@ Our vision for SwarmSight extends well into the future:
 
 Join our growing community:
 
-- [Discord](https://discord.gg/swarmsight) - For real-time discussions
-- [Telegram](https://t.me/swarmsight_io) - For announcements and updates
-- [Forum](https://forum.swarmsight.io) - For in-depth discussions
+- [Github](https://github.com/swarmsight/SwarmSight) - For real-time discussions
+- [X](https://x.com/SwarmSightHQ) - For announcements and updates
+- [Web](https://swarmsight.io/) - For in-depth discussions
 
 ## 📄 License
 
