@@ -9,13 +9,9 @@
  ╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
 
     🔍 Advanced Security Analysis for Blockchain Ecosystems 🛡️
-```
-
-  <p><strong>Comprehensive vulnerability detection across multiple blockchain languages</strong></p>
-  [![Website](https://img.shields.io/badge/Website-SwarmSight-blue)](https://swarmsight.io)
-  [![Discord](https://img.shields.io/badge/Discord-Join-7289DA)](https://discord.gg/swarmsight)
-  [![Telegram](https://img.shields.io/badge/Telegram-Join-26A5E4)](https://t.me/swarmsight_io)
-  [![X](https://img.shields.io/badge/X-Follow-black)](https://x.com/SwarmSightHQ)
+```  <p><strong>Comprehensive vulnerability detection across multiple blockchain languages</strong></p>
+  [![Website](https://img.shields.io/badge/Website-SwarmSight-blue)](https://swarmsight.xyz)
+  [![X](https://img.shields.io/badge/X-Follow-black)](https://x.com/swarmsight)
   [![GitHub Stars](https://img.shields.io/github/stars/swarmsight/SwarmSight?style=social)](https://github.com/swarmsight/SwarmSight)
   [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 </div>
@@ -83,7 +79,7 @@ npm run scan [project-path]
 
 ## 📖 Documentation
 
-For comprehensive documentation, visit our [Documentation Portal](https://docs.swarmsight.io).
+For comprehensive documentation, visit our [Documentation Portal](https://docs.swarmsight.xyz).
 
 ## 🗺️ Roadmap
 
@@ -99,8 +95,8 @@ Our vision for SwarmSight extends well into the future:
 Join our growing community:
 
 - [Github](https://github.com/swarmsight/SwarmSight) - For real-time discussions
-- [X](https://x.com/SwarmSightHQ) - For announcements and updates
-- [Web](https://swarmsight.io/) - For in-depth discussions
+- [X](https://x.com/swarmsight) - For announcements and updates
+- [Web](https://swarmsight.xyz) - For in-depth discussions
 
 ## 📄 License
 
